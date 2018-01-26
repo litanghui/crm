@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.model.Orders" >
+    <constructor >
+      <arg column="odr_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="odr_customer" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="odr_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="odr_addr" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="odr_status" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.zking.crm.model.Orders" >
+    insert into orders (odr_id, odr_customer, odr_date, 
+      odr_addr, odr_status)
+    values (#{odrId,jdbcType=BIGINT}, #{odrCustomer,jdbcType=NVARCHAR}, #{odrDate,jdbcType=TIMESTAMP}, 
+      #{odrAddr,jdbcType=NVARCHAR}, #{odrStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="odrId != null" >
+        odr_id,
+      </if>
+      <if test="odrCustomer != null" >
+        odr_customer,
+      </if>
+      <if test="odrDate != null" >
+        odr_date,
+      </if>
+      <if test="odrAddr != null" >
+        odr_addr,
+      </if>
+      <if test="odrStatus != null" >
+        odr_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="odrId != null" >
+        #{odrId,jdbcType=BIGINT},
+      </if>
+      <if test="odrCustomer != null" >
+        #{odrCustomer,jdbcType=NVARCHAR},
+      </if>
+      <if test="odrDate != null" >
+        #{odrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="odrAddr != null" >
+        #{odrAddr,jdbcType=NVARCHAR},
+      </if>
+      <if test="odrStatus != null" >
+        #{odrStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

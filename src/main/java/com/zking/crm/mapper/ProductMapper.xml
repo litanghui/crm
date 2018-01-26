@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.model.Product" >
+    <constructor >
+      <arg column="prod_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="prod_name" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="prod_type" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="prod_batch" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="prod_unit" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="prod_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="prod_memo" jdbcType="NVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.zking.crm.model.Product" >
+    insert into product (prod_id, prod_name, prod_type, 
+      prod_batch, prod_unit, prod_price, 
+      prod_memo)
+    values (#{prodId,jdbcType=BIGINT}, #{prodName,jdbcType=NVARCHAR}, #{prodType,jdbcType=NVARCHAR}, 
+      #{prodBatch,jdbcType=NVARCHAR}, #{prodUnit,jdbcType=NVARCHAR}, #{prodPrice,jdbcType=DECIMAL}, 
+      #{prodMemo,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.model.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prodId != null" >
+        prod_id,
+      </if>
+      <if test="prodName != null" >
+        prod_name,
+      </if>
+      <if test="prodType != null" >
+        prod_type,
+      </if>
+      <if test="prodBatch != null" >
+        prod_batch,
+      </if>
+      <if test="prodUnit != null" >
+        prod_unit,
+      </if>
+      <if test="prodPrice != null" >
+        prod_price,
+      </if>
+      <if test="prodMemo != null" >
+        prod_memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prodId != null" >
+        #{prodId,jdbcType=BIGINT},
+      </if>
+      <if test="prodName != null" >
+        #{prodName,jdbcType=NVARCHAR},
+      </if>
+      <if test="prodType != null" >
+        #{prodType,jdbcType=NVARCHAR},
+      </if>
+      <if test="prodBatch != null" >
+        #{prodBatch,jdbcType=NVARCHAR},
+      </if>
+      <if test="prodUnit != null" >
+        #{prodUnit,jdbcType=NVARCHAR},
+      </if>
+      <if test="prodPrice != null" >
+        #{prodPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="prodMemo != null" >
+        #{prodMemo,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

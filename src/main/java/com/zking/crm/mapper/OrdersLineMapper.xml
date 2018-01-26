@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.mapper.OrdersLineMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.model.OrdersLine" >
+    <constructor >
+      <arg column="odd_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="odd_order_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="odd_prod_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="odd_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="odd_unit" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="odd_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.zking.crm.model.OrdersLine" >
+    insert into orders_line (odd_id, odd_order_id, odd_prod_id, 
+      odd_count, odd_unit, odd_price
+      )
+    values (#{oddId,jdbcType=BIGINT}, #{oddOrderId,jdbcType=BIGINT}, #{oddProdId,jdbcType=BIGINT}, 
+      #{oddCount,jdbcType=INTEGER}, #{oddUnit,jdbcType=NVARCHAR}, #{oddPrice,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.model.OrdersLine" >
+    insert into orders_line
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oddId != null" >
+        odd_id,
+      </if>
+      <if test="oddOrderId != null" >
+        odd_order_id,
+      </if>
+      <if test="oddProdId != null" >
+        odd_prod_id,
+      </if>
+      <if test="oddCount != null" >
+        odd_count,
+      </if>
+      <if test="oddUnit != null" >
+        odd_unit,
+      </if>
+      <if test="oddPrice != null" >
+        odd_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oddId != null" >
+        #{oddId,jdbcType=BIGINT},
+      </if>
+      <if test="oddOrderId != null" >
+        #{oddOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="oddProdId != null" >
+        #{oddProdId,jdbcType=BIGINT},
+      </if>
+      <if test="oddCount != null" >
+        #{oddCount,jdbcType=INTEGER},
+      </if>
+      <if test="oddUnit != null" >
+        #{oddUnit,jdbcType=NVARCHAR},
+      </if>
+      <if test="oddPrice != null" >
+        #{oddPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>
